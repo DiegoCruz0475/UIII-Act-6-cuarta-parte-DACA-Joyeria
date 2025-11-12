@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Empleado{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #e3f2fd;"> <!-- Fondo azul claro suave -->
+        <h2 class="card-title text-center mb-4" style="color: #01579b;">Agregar Nuevo Empleado</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Empleado:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="puesto" class="form-label">Puesto:</label>
+                <input type="text" class="form-control" id="puesto" name="puesto" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo Electrónico:</label>
+                <input type="text" class="form-control" id="correo" name="correo" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_contratacion" class="form-label">Fecha de Contratación:</label>
+                <input type="date" class="form-control" id="fecha_contratacion" name="fecha_contratacion" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #29b6f6; border-color: #29b6f6;">Guardar Empleado</button>
+            <a href="{% url 'ver_empleados' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

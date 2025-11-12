@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Empleado{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #fce4ec;"> <!-- Fondo rosa claro suave -->
+        <h2 class="card-title text-center mb-4" style="color: #c2185b;">Actualizar Empleado: {{ empleado.nombre }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Empleado:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ empleado.nombre }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="puesto" class="form-label">Puesto:</label>
+                <input type="text" class="form-control" id="puesto" name="puesto" value="{{ empleado.puesto }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="{{ empleado.telefono }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo Electrónico:</label>
+                <input type="text" class="form-control" id="correo" name="correo" value="{{ empleado.correo }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_contratacion" class="form-label">Fecha de Contratación:</label>
+                <input type="date" class="form-control" id="fecha_contratacion" name="fecha_contratacion" value="{{ empleado.fecha_contratacion|date:'Y-m-d' }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #e91e63; border-color: #e91e63;">Actualizar Empleado</button>
+            <a href="{% url 'ver_empleados' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

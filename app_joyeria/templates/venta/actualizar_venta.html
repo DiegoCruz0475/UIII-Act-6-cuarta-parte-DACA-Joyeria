@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Venta{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow-sm p-4" style="background-color: #fffde7;"> <!-- Fondo amarillo muy claro suave -->
+        <h2 class="card-title text-center mb-4" style="color: #fbc02d;">Actualizar Venta #{{ venta.id_venta }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_empleado" class="form-label">Empleado:</label>
+                <select class="form-control" id="id_empleado" name="id_empleado" required>
+                    <option value="">Selecciona un empleado</option>
+                    {% for empleado in empleados %}
+                        <option value="{{ empleado.id_empleado }}" {% if empleado.id_empleado == venta.id_empleado.id_empleado %}selected{% endif %}>
+                            {{ empleado.nombre }} ({{ empleado.puesto }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_cliente" class="form-label">Cliente:</label>
+                <select class="form-control" id="id_cliente" name="id_cliente" required>
+                    <option value="">Selecciona un cliente</option>
+                    {% for cliente in clientes %}
+                        <option value="{{ cliente.id_cliente }}" {% if cliente.id_cliente == venta.id_cliente.id_cliente %}selected{% endif %}>
+                            {{ cliente.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_producto" class="form-label">Producto:</label>
+                <select class="form-control" id="id_producto" name="id_producto" required>
+                    <option value="">Selecciona un producto</option>
+                    {% for producto in productos %}
+                        <option value="{{ producto.id_producto }}" {% if producto.id_producto == venta.id_producto.id_producto %}selected{% endif %}>
+                            {{ producto.nombre }} (${{ producto.precio }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_venta" class="form-label">Fecha de Venta:</label>
+                <input type="date" class="form-control" id="fecha_venta" name="fecha_venta" value="{{ venta.fecha_venta|date:'Y-m-d' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="metodo_pago" class="form-label">Método de Pago:</label>
+                <input type="text" class="form-control" id="metodo_pago" name="metodo_pago" value="{{ venta.metodo_pago }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="background-color: #ffc107; border-color: #ffc107;">Actualizar Venta</button>
+            <a href="{% url 'ver_ventas' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
